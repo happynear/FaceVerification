@@ -1,29 +1,9 @@
 function [mappedX, mapping] = JointBayesian(X, labels)
-%LDA Perform the LDA algorithm
-%
-%   [mappedX, mapping] = lda(X, labels, no_dims)
-%
-% The function runs LDA on a set of datapoints X. The variable
-% no_dims sets the number of dimensions of the feature points in the 
-% embedded feature space (no_dims >= 1, default = 2). The maximum number 
-% for no_dims is the number of classes in your data minus 1. 
-% The function returns the coordinates of the low-dimensional data in 
-% mappedX. Furthermore, it returns information on the mapping in mapping.
-%
-%
-
-% This file is part of the Matlab Toolbox for Dimensionality Reduction.
-% The toolbox can be obtained from http://homepage.tudelft.nl/19j49
-% You are free to use, change, or redistribute this code in any way you
-% want for non-commercial purposes. However, it is appreciated if you 
-% maintain the name of the original author.
-%
-% (C) Laurens van der Maaten, Delft University of Technology
-% Make sure data is zero mean
-%     mapping.mean = mean(X, 1);
-%     [COEFF,SCORE] = princomp(X,'econ');
-%     X = SCORE(:,1:400);
-%     X = bsxfun(@minus,X,mapping.mean);
+% Joint Bayesian
+% Chen D, Cao X, Wang L, et al. Bayesian face revisited: A joint formulation, ECCV 2012.
+% 
+% programmed by happynear
+% https://github.com/happynear
     m = length(labels);
     n = size(X,2);
 	
