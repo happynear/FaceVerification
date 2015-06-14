@@ -4,7 +4,7 @@ caffe.set_device(gpu_id);
 
 allPairs = [same_pair;diff_pair];
 meanC = caffe.read_mean('D:\ThirdPartyLibrary\caffe\examples\siamese\scu_mean.proto');
-net = caffe.Net('D:\ThirdPartyLibrary\caffe\examples\siamese\VGG_deploy.prototxt','D:\ThirdPartyLibrary\caffe\examples\siamese\siamese_iter_500000.caffemodel', 'test');
+net = caffe.Net('D:\ThirdPartyLibrary\caffe\examples\siamese\CASIA_deploy.prototxt','D:\ThirdPartyLibrary\caffe\examples\siamese\siamese_iter_500000.caffemodel', 'test');
 num = size(allPairs,1);
 AllFeature1 = zeros(320,num);
 AllFeature2 = zeros(320,num);
