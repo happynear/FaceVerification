@@ -1,7 +1,7 @@
 # FaceVerification
 A messy code for developing a face verfication program. 
 
-It includes a C++ face detection / alignment program, joint bayesian and several supplementary codes. Please just use the codes if you need.
+It includes a C++ face detection / alignment program, [joint bayesian](http://home.ustc.edu.cn/~chendong/JointBayesian/) and several supplementary codes. Feel free to use the codes if you need.
 
 If you are also interested in face verification, please contact me via the issue.
 
