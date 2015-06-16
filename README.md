@@ -5,6 +5,8 @@ It includes a C++ face detection / alignment program, [joint bayesian](http://ho
 
 If you are also interested in face verification, please contact me via the issue.
 
+The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) is really very dirty, and I believe that if someone could wash it up, the accuracy would increase further. If you did so, please kindly contact me. I will pay for it.
+
 Progress
 ===========
 1. Training DeepID (pure softmax network).
