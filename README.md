@@ -30,3 +30,5 @@ Progress
 2. Training DeepID2 (siamese network)
 
     create database. done.
+    
+    My GPU memory is only 2GB. It is too slow to train a siamese network. I need Titan X!!!
