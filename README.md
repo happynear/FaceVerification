@@ -27,6 +27,8 @@ Progress
     
     Accuracy on training set is about 89.5%~91.5%. LFW result with L2 or cosine has reached what the paper claimed. Joint Bayesian seems to be strongly overfit.
     
+    Another model with resolution of 64*64 is trained. By ensembling the two models, accuracy increase to 97.18%.
+    
 2. Training DeepID2 (siamese network)
 
     create database. done.
