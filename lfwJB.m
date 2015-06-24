@@ -1,8 +1,4 @@
 num = size(AllFeature1,2);
-F1 = AllFeature1';
-F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
-F2 = AllFeature2';
-F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
 
 same_label = ones(6000,1);
 same_label(3001:6000) = 0;
@@ -10,12 +6,23 @@ same_label(3001:6000) = 0;
 accuracies = zeros(10,1);
 
 for i = 1 : 10
+    F1 = AllFeature1';
+    F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
+    F2 = AllFeature2';
+    F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
+    
     test_idx = [(i-1) * 300 + 1 : i*300, (i-1) * 300 + 3001 : i*300 + 3000];
     train_idx = 1:6000;
     train_idx(test_idx) = [];
     train = [F1(train_idx,:);F2(train_idx,:)];
     train_label = [lfw_label(train_idx,1);lfw_label(train_idx,2)];
-    [mappedX, mapping] = JointBayesian(train, train_label);
+    [normX, PCAmap] = compute_mapping(train, 'PCA', 310);
+    [mappedX, mapping] = JointBayesian(normX, train_label);
+    
+    F1 = bsxfun(@minus,F1,PCAmap.mean);
+    F1 = F1 * PCAmap.M;
+    F2 = bsxfun(@minus,F2,PCAmap.mean);
+    F2 = F2 * PCAmap.M;
     
 %     thresh = zeros(size(train_idx,2),1);
 %     for j = 1:size(train_idx,2)

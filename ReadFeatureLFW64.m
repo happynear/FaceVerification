@@ -3,10 +3,10 @@ caffe.set_mode_gpu();
 gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
-% ROIx = 19:82;
-% ROIy = 19:82;
-ROIx = 1:100;
-ROIy = 1:100;
+ROIx = 19:82;
+ROIy = 19:82;
+% ROIx = 1:100;
+% ROIy = 1:100;
 
 % ROIx = 1:64;
 % ROIy = 1:64;
@@ -14,8 +14,8 @@ height = length(ROIx);
 width = length(ROIy);
 
 allPairs = [same_pair;diff_pair];
-meanC = caffe.read_mean('D:\ThirdPartyLibrary\caffe\examples\siamese\mean.proto');
-net = caffe.Net('D:\ThirdPartyLibrary\caffe\examples\siamese\96.8\CASIA_deploy.prototxt','D:\ThirdPartyLibrary\caffe\examples\siamese\96.8\siamese_iter_500000.caffemodel', 'test');
+meanC = caffe.read_mean('D:\ThirdPartyLibrary\caffe\examples\siamese\web_mean.proto');
+net = caffe.Net('D:\ThirdPartyLibrary\caffe\examples\siamese\CASIA_deploy.prototxt','D:\ThirdPartyLibrary\caffe\examples\siamese\siamese_iter_912000.caffemodel', 'test');
 % meanC = caffe.read_mean('C:\Users\feng\Documents\Tencent Files\438797086\FileRecv\meanfile');
 % net = caffe.Net('C:\Users\feng\Documents\Tencent Files\438797086\FileRecv\deep_ID1.prototxt','C:\Users\feng\Documents\Tencent Files\438797086\FileRecv\DP__iter_120000.caffemodel','test');
 num = size(allPairs,1);
@@ -35,9 +35,6 @@ for i = 1 : floor(num/100)
     f = net.forward(H);
     f = f{1};
     AllFeature1(:,(i-1)*100+1:i*100) = reshape(f,[size(AllFeature1,1),100]);
-%     layer_conv52 = net.blob_vec(net.name2blob_index('pool5'));
-%     conv52 = layer_conv52.get_data();
-%     sum(conv52(:)>0) /320/100
 end;
 J = zeros(height,width,1,100,'single');
 for j = 1 : num - floor(num/100) * 100
