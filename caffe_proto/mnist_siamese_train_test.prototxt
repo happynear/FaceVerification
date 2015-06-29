@@ -1,7 +1,7 @@
 name: "mnist_siamese_train_test"
-layers {
+layer {
   name: "pair_data1"
-  type: DATA
+  type: "Data"
   top: "pair_data1"
   top: "label1"
   data_param {
@@ -16,9 +16,9 @@ layers {
   }
   include: { phase: TRAIN }
 }
-layers {
+layer {
   name: "pair_data2"
-  type: DATA
+  type: "Data"
   top: "pair_data2"
   top: "label2"
   data_param {
@@ -34,9 +34,9 @@ layers {
   include: { phase: TRAIN }
 }
 
-layers {
+layer {
   name: "pair_data1"
-  type: DATA
+  type: "Data"
   top: "pair_data1"
   top: "label1"
   data_param {
@@ -51,9 +51,9 @@ layers {
   }
   include: { phase: TEST }
 }
-layers {
+layer {
   name: "pair_data2"
-  type: DATA
+  type: "Data"
   top: "pair_data2"
   top: "label2"
   data_param {
@@ -543,7 +543,7 @@ layer {
   }
   include: { phase: TRAIN }
 }
-layers {
+layer {
   name: "softmax_loss1"
   type: "SoftmaxWithLoss"
 #  hinge_loss_param {
@@ -1032,7 +1032,7 @@ layer {
   include: { phase: TRAIN }
 }
 
-layers {
+layer {
   name: "softmax_loss2"
   type: "SoftmaxWithLoss"
 #  hinge_loss_param {
@@ -1046,7 +1046,7 @@ layers {
 }
 
 
-layers {
+layer {
     name: "simloss"
     type: "Contrastive"
 	loss_weight: 0.001
