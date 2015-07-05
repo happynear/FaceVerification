@@ -7,6 +7,11 @@ If you are also interested in face verification, please contact me via the issue
 
 The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) is really very dirty, and I believe that if someone could wash it up, the accuracy would increase further. If you did so, please kindly contact me. I will pay for it.
 
+Update
+==========
+
+2015/07/05 Added a matlab face alignment wrapper (MatAlignment.cpp). Now you can do the face alignment job in matlab. A demo (VerificationDemo.m) is also privided. 
+
 Progress
 ===========
 1. Training DeepID (pure softmax network).
