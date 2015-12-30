@@ -46,7 +46,7 @@ training = [Dis_train_Intra;Dis_train_Extra];
 % 
 % CrossData = [Dis_validate_Intra(Dis_validate_Intra>=thresh1&Dis_validate_Intra<=thresh2);Dis_validate_Extra(Dis_validate_Extra>=thresh1&Dis_validate_Extra<=thresh2)];
 % thresh = mean(CrossData);
-testing = 8;
+% testing = 8;
 test_Intra = pairlist_lfw.IntraPersonPair((testing-1)*300+1:testing*300,:);
 test_Extra = pairlist_lfw.ExtraPersonPair((testing-1)*300+1:testing*300,:);
 result_Intra = zeros(300,1);
