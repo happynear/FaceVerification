@@ -34,7 +34,7 @@ Progress
     
     Accuracy on training set is about 89.5%~91.5%. LFW result with L2 or cosine has reached what the paper claimed. Joint Bayesian seems to be strongly overfit. The main reason is that I only train Joint Bayesian on the lfw training set, not CASIA-WebFace. Joint Bayesian for over 10,000 classes is too costy for my PC. 
     
-    This model is public available now: http://pan.baidu.com/s/1qXhNOZE .
+    This model is public available now: http://pan.baidu.com/s/1qXhNOZE . Mean file is in http://pan.baidu.com/s/1eQYEJU6 .
     
     Another model with resolution of 64*64 is trained. By ensembling the two models, accuracy increases to 97.18%.
     
