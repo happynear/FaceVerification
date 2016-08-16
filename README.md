@@ -7,8 +7,6 @@ If you are also interested in face verification, please contact me via the issue
 
 The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html) is really very dirty, and I believe that if someone could wash it up, the accuracy would increase further. If you did so, please kindly contact me. I will pay for it.
 
-**Good News:** [@潘泳苹果皮](http://weibo.com/maxpanyong) and his colleagues have washed the CASIA-webface database manually. After washing, 27703 wrong images are deleted. The washed list can be downloaded from http://pan.baidu.com/s/1kUdRRJT with password `3zbb`. Great thanks to them!
-
 Update
 ==========
 
