@@ -1,16 +1,22 @@
 num = size(AllFeature1,2);
-F1 = AllFeature1';
-% F1 = (F11>0);
-% F1 = sign(F1) .* sqrt(abs(F1));
+F1 = AllFeature1(1:512,:)';
+% F1 = max(AllFeature1(1:512,:)', AllFeature1(513:1024,:)');%(1:512,:)
+% F1 = bsxfun(@minus, F1, min(F1,[],2));
+% F1 = bsxfun(@rdivide, F1, max(F1,[],2));
+F1 = bsxfun(@minus, F1, mean(F1,1));
 F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
 % F1 = bsxfun(@minus,F1,PCAmap.mean);
 % F1 = F1 * PCAmap.M;
-F2 = AllFeature2';
-% F2 = (F21>0);
-% F2 = sign(F1) .* sqrt(abs(F2));
+
+F2 = AllFeature2(1:512,:)';
+% F2 = max(AllFeature2(1:512,:)', AllFeature2(513:1024,:)');%(1:512,:)
+% F2 = bsxfun(@minus, F2, min(F2,[],2));
+% F2 = bsxfun(@rdivide, F2, max(F2,[],2));
+F2 = bsxfun(@minus, F2, mean(F2,1));
 F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
 % F2 = bsxfun(@minus,F2,PCAmap.mean);
 % F2 = F2 * PCAmap.M;
+
 % F1 = AllFeature1';
 % F2 = AllFeature2';
 thresh2 = zeros(num,1);
