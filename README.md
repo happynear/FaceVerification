@@ -12,7 +12,7 @@ The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Datab
 Update
 ==========
 
-2017/02/18 I trained a [center-face](https://github.com/ydwen/caffe-face) model on [MS-Celeb-1M dataset](https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/) and get 99.3% on LFW. Here is the model (http://pan.baidu.com/s/1kUER1SN) and the aligned LFW images (http://pan.baidu.com/s/1bp7qzJh). To run the evaluation, you need to load LFW pairs by `getPairs.m` in `aligned_lfw.zip`, extract feature by `ReadFeatureLFW.m` and get the accuracy by `lfwPCA.m`.
+2017/02/18 I trained a [center-face](https://github.com/ydwen/caffe-face) model on [MS-Celeb-1M dataset](https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/) and get 99.3% on LFW. Here is the model (http://pan.baidu.com/s/1jIJT4Rc) and the aligned LFW images (http://pan.baidu.com/s/1bp7qzJh). To run the evaluation, you need to load LFW pairs by `getPairs.m` in `aligned_lfw.zip`, extract feature by `ReadFeatureLFW.m` and get the accuracy by `lfwPCA.m`.
 
 2015/07/05 Added a matlab face alignment wrapper (MatAlignment.cpp). Now you can do the face alignment job in matlab. A demo (VerificationDemo.m) is also privided. 
 
