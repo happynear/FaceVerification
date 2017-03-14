@@ -16,7 +16,7 @@ addpath(genpath(MTCNN_path));
 coord5points = [30.2946, 65.5318, 48.0252, 33.5493, 62.7299; ...
                 51.6963, 51.5014, 71.7366, 92.3655, 92.2041];
 imgSize = [112, 96];
-align_method = 'yuandong';% wuxiang or yuandong
+align_method = 'yandong';% wuxiang or yandong
             
 %caffe.set_mode_cpu();
 gpu_id=0;
