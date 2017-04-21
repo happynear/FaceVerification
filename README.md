@@ -12,6 +12,8 @@ The [CASIA-webface dataset](http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Datab
 Update
 ==========
 
+2017/04/21 The project page of my new paper, NormFace: L2 HyperSphere Embedding for Face Verification, is created on https://github.com/happynear/NormFace. Using the new loss functions to fine-tune a network, the accuracy will increase a little bit higher.
+
 2017/02/18 I trained a [center-face](https://github.com/ydwen/caffe-face) model on [MS-Celeb-1M dataset](https://www.microsoft.com/en-us/research/project/ms-celeb-1m-challenge-recognizing-one-million-celebrities-real-world/) and get 99.3% on LFW. Here is the model (http://pan.baidu.com/s/1jIJT4Rc) and the aligned LFW images (http://pan.baidu.com/s/1bp7qzJh). To run the evaluation, you need to load LFW pairs by `getPairs.m` in `aligned_lfw.zip`, extract feature by `ReadFeatureLFW.m` and get the accuracy by `lfwPCA.m`. The function `pcaApply` used in `lfwPCA.m` is from [pdollar-toolbox](https://github.com/pdollar/toolbox).
 
 **Recently I talked with Yandong Wen. He said that there were more than 1,000 identities' overlap between MS-Celeb-1M and LFW. So this accuracy, 99.3%, is not a reliable value, and the performance on other datasets may not be very good.**
