@@ -1,27 +1,26 @@
-if exist('image_list.mat','file')
-    load('image_list.mat');
-end;
+% if exist('image_list.mat','file')
+%     load('image_list.mat');
+% end;
 if ~exist('image_list','var')
-    folder = 'E:\datasets\YTF\aligned_images_DB2';
+    folder = 'D:\datasets\aligned_images_DB2';
     addpath('..');
     image_list = get_image_list_in_folder(folder); 
 end;
 caffe.reset_all();
 caffe.set_mode_gpu();
-gpu_id = 1;  % we will use the first gpu in this demo
+gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
-feature_dim = 1024;
+feature_dim = 512;
 batch_size = 100;
-mean_value = 127.5;
+mean_value = 128;
 scale = 0.0078125;
 ROIx = 1:96;
 ROIy = 1:112;
 height = length(ROIx);
 width = length(ROIy);
 
-% net = caffe.Net('D:\face project\experiment\96_112_l2_distance\face_deploy.prototxt','D:\face project\experiment\96_112_l2_distance\face_train_test_iter_8000.caffemodel', 'test');%face_model_my
-net = caffe.Net('D:\face project\experiment\96_112_l2_distance\face_deploy_concat.prototxt','E:\downloads\face_model(1).caffemodel', 'test');%face_model_my
+net = caffe.Net('E:\Feng\face\l2_distance_contrastive\face_deploy.prototxt','E:\Feng\face\finetune\joint loss\ip+l2\center\weight0.01\face_train_test_iter_10000.caffemodel', 'test');%face_model_my
 
 total_image = length(image_list);
 total_iter = ceil(total_image / batch_size);
