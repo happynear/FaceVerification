@@ -9,7 +9,7 @@ ROIx = 1:96;
 ROIy = 1:112;
 feature_dim = 512;
 mean_value = 128;
-scale = 0.04;
+scale = 0.0078125;
 
 % ROIx = 1:64;
 % ROIy = 1:64;
@@ -18,7 +18,8 @@ width = length(ROIy);
 
 allPairs = [same_pair;diff_pair];
 % meanC = caffe.read_mean('D:\ThirdPartyLibrary\caffe\examples\siamese\mean.proto');
-net = caffe.Net('D:\face project\experiment\96_112_l2_distance\face_deploy.prototxt','D:\face project\experiment\96_112_l2_distance\face_train_test_iter_90000.caffemodel', 'test');
+net = caffe.Net('D:\face project\experiment\96_112_l2_distance\face_deploy.prototxt','D:\face project\experiment\96_112_l2_distance\face_model.caffemodel', 'test');%
+% net = caffe.Net('caffe_proto\center_loss_ms.prototxt','caffe_proto\center_loss_ms.caffemodel', 'test');
 % net = caffe.Net('D:\face project\experiment\Model_facecenter_Align_vertical_96_112\face_deploy.prototxt','E:\downloads\face_model.caffemodel', 'test');
 num = size(allPairs,1);
 AllFeature1 = zeros(feature_dim,num);
@@ -84,3 +85,4 @@ f1 = net.forward({J});
 f1=f1{1};
 f1 = squeeze(f1);
 AllFeature2(1:feature_dim,floor(num/100) * 100+1:num) = f1(:,1 : num - floor(num/100) * 100);
+% caffe.reset_all();

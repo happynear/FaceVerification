@@ -1,11 +1,11 @@
 close all;
 num = size(AllFeature1,2);
-F1 = AllFeature1(1:512,:)';
+F1 = AllFeature1' / 4000;
 % F1 = max(AllFeature1(1:512,:)', AllFeature1(513:1024,:)');%(1:512,:)
 % F1 = bsxfun(@minus, F1, mean(F1,1));
 % F1 = bsxfun(@rdivide, F1, sqrt(sum(F1.^2,2)));
 
-F2 = AllFeature2(1:512,:)';
+F2 = AllFeature2' / 4000;
 % F2 = max(AllFeature2(1:512,:)', AllFeature2(513:1024,:)');%(1:512,:)
 % F2 = bsxfun(@minus, F2, mean(F2,1));
 % F2 = bsxfun(@rdivide, F2, sqrt(sum(F2.^2,2)));
@@ -56,6 +56,7 @@ for i=1:10
 %         thresh1(n) = pdist2(F1(n,:),F2(n,:));
         thresh1(n) = pdist2(F1PCA(:,n)',F2PCA(:,n)');
 %         thresh1(n) = F1PCA(:,n)' * F2PCA(:,n);
+%         thresh1(n) = F1(n,:) * F2(n,:)';
     end;
     cmd = [' -t 0 -h 0'];
     model = svmtrain(same_label(train_idx),thresh1(train_idx),cmd);

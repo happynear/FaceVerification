@@ -1,7 +1,7 @@
-folder = 'E:\datasets\MegaFace\megafacedata\FlickrFinal2';
+folder = 'E:\datasets\YTF\aligned_images_DB';
 addpath('..');
 image_list = get_image_list_in_folder(folder);
-target_folder = 'E:\datasets\MegaFace\megafacedata\FlickrFinal2-align';
+target_folder = 'E:\datasets\YTF\aligned_images_DB2_wx';
 if exist(target_folder, 'dir')==0
     mkdir(target_folder);
 end;
@@ -16,7 +16,7 @@ addpath(genpath(MTCNN_path));
 coord5points = [30.2946, 65.5318, 48.0252, 33.5493, 62.7299; ...
                 51.6963, 51.5014, 71.7366, 92.3655, 92.2041];
 imgSize = [112, 96];
-align_method = 'yandong';% wuxiang or yandong
+align_method = 'wuxiang';% wuxiang or yandong
             
 %caffe.set_mode_cpu();
 gpu_id=1;
@@ -27,7 +27,7 @@ caffe.reset_all();
 %three steps's threshold
 threshold=[0.6 0.7 0.7]
 
-minsize = 100;
+minsize = 80;
 
 %scale factor
 factor=0.709;
@@ -48,17 +48,13 @@ LNet=caffe.Net(prototxt_dir,model_dir,'test');
 faces=cell(0);	
 
 for image_id = 1:length(image_list);
-    [file_folder, file_name, file_ext] = fileparts(image_list{image_id});
-    target_filename = strrep(image_list{image_id},folder, target_folder);
-    if exist(target_filename, 'file')
-        continue;
-    end;
     img = imread(image_list{image_id});
     if size(img, 3) < 3
        img(:,:,2) = img(:,:,1);
        img(:,:,3) = img(:,:,1);
     end
-    
+    [file_folder, file_name, file_ext] = fileparts(image_list{image_id});
+    target_filename = strrep(image_list{image_id},folder, target_folder);
     assert(strcmp(target_filename, image_list{image_id})==0);
     [file_folder, file_name, file_ext] = fileparts(target_filename);
     if exist(file_folder,'dir')==0

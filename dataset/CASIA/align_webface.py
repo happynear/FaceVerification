@@ -12,7 +12,7 @@ import CascadeFaceDetection
 model_folder = "D:/face project/MTCNN_face_detection_alignment/code/codes/MTCNNv2/model/"
 #root_path = "E:/datasets/casia-maxpy-clean/CASIA-maxpy-clean"
 #root_path = "E:/datasets/lfw"
-root_path= "C:/datasets/CASIA-maxpy-clean-aligned-96"
+root_path= "E:/datasets/casia-maxpy-clean/CASIA-maxpy-clean-aligned-wuxiang"
 
 show_debug = False
 
@@ -158,6 +158,6 @@ def split_train_val(list_path, train_ratio=0.95):
 #mkdirP(root_path+"-aligned")
 #create_list(root_path, create_aligned_folder=True)
 #open_list("{0}/list.txt".format(root_path))
-create_list(root_path, create_aligned_folder=False)
+#create_list(root_path, create_aligned_folder=False)
 split_train_val(root_path + "/list.txt")
 #align_and_save_face(root_path+"/list.txt", "Muhammad_Saeed_al-Sahhaf/Muhammad_Saeed_al-Sahhaf_0003.jpg")
