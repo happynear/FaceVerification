@@ -2,7 +2,7 @@
 
 Requirement: 
 1. [MatMTCNN](https://github.com/happynear/MTCNN_face_detection_alignment/tree/master/code/codes/vs/MatCascadeFaceDetection). 
-If you are not using Windows, you need to modify some of the codes to directly use the [Matlab version of MTCNN](https://github.com/kpzhang93/MTCNN_face_detection_alignment).
+If you are not using Windows, you need to modify some of the codes to directly use the [Matlab version of MTCNN](https://github.com/kpzhang93/MTCNN_face_detection_alignment). If you have done such a work, I'm glad to merge your codes.
 
 2. [Megaface](http://megaface.cs.washington.edu/participate/challenge.html). Please download 
 `Our dataset`, `FaceScrub full tgz`, `FaceScrub bounding boxes actors txt`,
