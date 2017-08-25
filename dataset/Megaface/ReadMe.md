@@ -26,7 +26,7 @@ So our logic is as follows.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If the detected face and the given bounding box's IoU is over 30%, align this face. 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If the IoU is below 30%, use the last two networks of MTCNN to force get the face score and 5 keypoints from the cropped image based on the given bounding box. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If the IoU is below 30%, use the last two networks of MTCNN to forcely get the face score and 5 keypoints from the cropped image based on the given bounding box. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If the face score is above 0.3, use the detected 5 points to align the face. 
 
