@@ -92,9 +92,11 @@ for image_id = 1:image_list_len
             catch
                 continue;
             end;
-            Tfm =  cp2tform(facial3points', coord5points(:,1:3)'*1.5+imgSize(1)*0.25, 'similarity');
-            img = imtransform(img, Tfm, 'XData', [1 imgSize(1)*2],...
-                                          'YData', [1 imgSize(1)*2], 'Size', [imgSize(1)*2 imgSize(1)*2]);
+            coord5points_shift = coord5points * 1.2;
+            coord5points_shift = bsxfun(@plus, coord5points_shift, imgSize' * 0.2);
+            Tfm =  cp2tform(facial5points', coord5points_shift', 'similarity');
+            img = imtransform(img, Tfm, 'XData', floor([1 imgSize(2)*1.6]),...
+                                          'YData', floor([1 imgSize(1)*1.6]), 'Size', floor(imgSize*1.6));
             result = MatMTCNN('detect', img, imgSize(1));
             default_face = 1;
             if ~isempty(result.bounding_box)
