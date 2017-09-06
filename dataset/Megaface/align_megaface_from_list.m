@@ -1,9 +1,9 @@
 %% Align megaface with the help of the provided 3 points.
 %% I got 739,181 out of 1M aligned faces using this code.
 %% The left faces need to use align_megaface_failures.m to align
-folder = 'F:\datasets\megaface\megafacedata\FlickrFinal2';
+folder = 'E:\datasets\megaface\megafacedata\FlickrFinal2';
 if ~exist('image_list','var')
-    list_file = 'F:\datasets\megaface\devkit\templatelists\megaface_features_list.json';
+    list_file = 'E:\datasets\megaface\devkit\templatelists\megaface_features_list.json';
     json_string = fileread(list_file);
     image_list = regexp(json_string(8:end), '"(.*?)"','tokens');
     for i=1:length(image_list)
@@ -11,7 +11,7 @@ if ~exist('image_list','var')
     end;
 end;
 
-target_folder = 'D:\datasets\MegaFace\megafacedata\aligned';
+target_folder = 'H:\datasets\MegaFace\megafacedata\aligned';
 if exist(target_folder, 'dir')==0
     mkdir(target_folder);
 end;
@@ -19,7 +19,7 @@ end;
 pdollar_toolbox_path='D:/face project/pdollar-toolbox';
 addpath(genpath(pdollar_toolbox_path));
 
-MTCNN_path = 'E:\Feng\project\MTCNN_face_detection_alignment\code\codes\MTCNNv2';
+MTCNN_path = 'D:\face project\MTCNN_face_detection_alignment\code\codes\MTCNNv2';
 caffe_model_path=[MTCNN_path , '/model/'];
 addpath(genpath(MTCNN_path));
 gpu_id = 0;
@@ -53,6 +53,7 @@ LNet=caffe.Net(prototxt_dir,model_dir,'test');
 faces=cell(0);	
 
 image_list_len = length(image_list);
+landmark_list = cell(image_list_len,1);
 
 for image_id = 1:image_list_len
     clear cropImg;
@@ -92,11 +93,11 @@ for image_id = 1:image_list_len
             catch
                 continue;
             end;
-            coord5points_shift = coord5points * 1.2;
-            coord5points_shift = bsxfun(@plus, coord5points_shift, imgSize' * 0.2);
-            Tfm =  cp2tform(facial5points', coord5points_shift', 'similarity');
-            img = imtransform(img, Tfm, 'XData', floor([1 imgSize(2)*1.6]),...
-                                          'YData', floor([1 imgSize(1)*1.6]), 'Size', floor(imgSize*1.6));
+            Tfm =  cp2tform(facial3points', coord5points(:,1:3)'*1.5+imgSize(1)*0.25, 'similarity');
+            img = imtransform(img, Tfm, 'XData', [1 imgSize(1)*2],...
+                                          'YData', [1 imgSize(1)*2], 'Size', [imgSize(1)*2 imgSize(1)*2]);
+            figure(3);
+            imshow(img);
             result = MatMTCNN('detect', img, imgSize(1));
             default_face = 1;
             if ~isempty(result.bounding_box)
