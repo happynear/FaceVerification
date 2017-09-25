@@ -1,9 +1,9 @@
 caffe.reset_all();
 caffe.set_mode_gpu();
-gpu_id = 1;  % we will use the first gpu in this demo
+gpu_id = 0;  % we will use the first gpu in this demo
 caffe.set_device(gpu_id);
 
-batch_size = 100;
+batch_size = 50;
 feature_dim = 512;
 mean_value = 128;
 scale = 0.0078125;
@@ -12,14 +12,15 @@ ROIy = 1:112;
 height = length(ROIx);
 width = length(ROIy);
 
-aligned_image_folder = 'D:\datasets\MegaFace\FaceScrub\aligned\';
-feature_folder = 'D:\datasets\MegaFace\FaceScrub\feature\';
+feature_suffix = '_hard64nofd';
+aligned_image_folder = 'F:\datasets\MegaFace\FaceScrub\aligned\';
+feature_folder = ['F:\datasets\MegaFace\FaceScrub\feature' feature_suffix '\'];
 if exist(feature_folder, 'dir')==0
     mkdir(feature_folder);
 end;
-feature_suffix = '_cnn.bin';
 
-test_list_file = 'F:\datasets\megaface\devkit\templatelists\facescrub_uncropped_features_list.json';
+
+test_list_file = 'E:\datasets\MegaFace\devkit\templatelists\facescrub_uncropped_features_list.json';
 json_string = fileread(test_list_file);
 json_string = json_string(strfind(json_string,'path')+8:end);
 test_list = regexp(json_string(8:end), '"(.*?)"','tokens');
@@ -40,7 +41,7 @@ end;
 total_image = length(test_list);
 total_iter = ceil(total_image / batch_size);
 
-net = caffe.Net('E:\Feng\face\l2_distance_contrastive\face_deploy_20.prototxt','E:\Feng\face\scratch\sphereface-20\sphereface_model.caffemodel', 'test');%face_model_my
+net = caffe.Net('D:\face project\experiment\96_112_l2_distance\face_deploy_64.prototxt','D:\face project\norm_face_model\hard-margin-64-nofd.caffemodel', 'test');%face_model_my
 
 image_p = 1;
 for i=1:total_iter
@@ -55,7 +56,7 @@ for i=1:total_iter
             I = I(ROIx,ROIy,:);
             I = single(I) - mean_value;
             J(:,:,:,j) = I*scale;
-            feature_names{j} = [strrep(test_list_raw{image_p},aligned_image_folder, feature_folder) feature_suffix];
+            feature_names{j} = [strrep(test_list_raw{image_p},aligned_image_folder, feature_folder) feature_suffix '.bin'];
             image_p = image_p + 1;
         end;
     end;

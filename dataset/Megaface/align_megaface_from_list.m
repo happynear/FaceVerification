@@ -3,7 +3,7 @@
 %% The left faces need to use align_megaface_failures.m to align
 folder = 'E:\datasets\megaface\megafacedata\FlickrFinal2';
 if ~exist('image_list','var')
-    list_file = 'E:\datasets\megaface\devkit\templatelists\megaface_features_list.json';
+    list_file = 'E:\datasets\megaface\devkit\templatelists\megaface_features_list.json_10000_1';
     json_string = fileread(list_file);
     image_list = regexp(json_string(8:end), '"(.*?)"','tokens');
     for i=1:length(image_list)
@@ -11,7 +11,7 @@ if ~exist('image_list','var')
     end;
 end;
 
-target_folder = 'H:\datasets\MegaFace\megafacedata\aligned';
+target_folder = 'F:\datasets\MegaFace\Megaface\aligned';
 if exist(target_folder, 'dir')==0
     mkdir(target_folder);
 end;
@@ -70,10 +70,15 @@ for image_id = 1:image_list_len
     catch
         continue;
     end;
+    
     if size(img, 3) < 3
        img(:,:,2) = img(:,:,1);
        img(:,:,3) = img(:,:,1);
     end
+    
+%     result1 = MatMTCNN('detect', img, min(imgSize(1), imgSize(2)));
+%     numbox1=size(result1.bounding_box,1);
+%     original_img = img;
     
     assert(strcmp(target_filename, image_list{image_id})==0);
     [file_folder, file_name, file_ext] = fileparts(target_filename);
@@ -93,11 +98,9 @@ for image_id = 1:image_list_len
             catch
                 continue;
             end;
-            Tfm =  cp2tform(facial3points', coord5points(:,1:3)'*1.5+imgSize(1)*0.25, 'similarity');
+            Tfm =  cp2tform(facial3points', coord5points(:,1:3)'*1.5+repmat(imgSize*0.25,[3 1]), 'similarity');
             img = imtransform(img, Tfm, 'XData', [1 imgSize(1)*2],...
                                           'YData', [1 imgSize(1)*2], 'Size', [imgSize(1)*2 imgSize(1)*2]);
-            figure(3);
-            imshow(img);
             result = MatMTCNN('detect', img, imgSize(1));
             default_face = 1;
             if ~isempty(result.bounding_box)
@@ -116,7 +119,20 @@ for image_id = 1:image_list_len
         imwrite(cropImg, target_filename);
     end;
 %     	show detection result
-%     if exist('cropImg','var')
+%     if numbox1 > 0 && ~exist('cropImg','var')
+%         figure(3);
+%         imshow(original_img);
+%         hold on; 
+%         if ~isempty(result1.bounding_box)
+%             for j=1:numbox1
+%                 rectangle('Position',result1.bounding_box(j,:),'Edgecolor','r','LineWidth',3); % Note that the predicted bbox could still not close to labeled bbox
+%                 plot(result1.points(j,1:2:9),result1.points(j,2:2:10),'g.','MarkerSize',10);
+%             end;
+%         end;
+%         hold off;
+%         pause
+%     end;
+%     if numbox1 ==0 && exist('cropImg','var')
 %         numbox=size(result.bounding_box,1);
 %         figure(1);
 %         imshow(img);
@@ -130,6 +146,17 @@ for image_id = 1:image_list_len
 %         hold off;
 %         figure(2);
 %         imshow(cropImg);
+%         figure(3);
+%         imshow(original_img);
+%         hold on; 
+%         if ~isempty(result1.bounding_box)
+%             for j=1:numbox1
+%                 rectangle('Position',result1.bounding_box(j,:),'Edgecolor','r','LineWidth',3); % Note that the predicted bbox could still not close to labeled bbox
+%                 plot(result1.points(j,1:2:9),result1.points(j,2:2:10),'g.','MarkerSize',10);
+%             end;
+%         end;
+%         hold off;
 %         pause
+%         
 %     end;
 end;

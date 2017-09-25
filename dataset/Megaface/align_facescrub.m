@@ -85,7 +85,7 @@ gpu_id=0;
 MatMTCNN('init_model', caffe_model_path, gpu_id);
 
 %three steps's threshold
-threshold=[0.6 0.7 0.7]
+threshold=[0.6 0.7 0.7];
 MatMTCNN('set_threshold', threshold);
 
 minsize = 100;
