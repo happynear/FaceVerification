@@ -1,7 +1,7 @@
-folder = 'E:\datasets\MegaFace\megafacedata\FlickrFinal2';
+folder = 'E:\datasets\discomfort';
 addpath('..');
 image_list = get_image_list_in_folder(folder);
-target_folder = 'E:\datasets\MegaFace\megafacedata\FlickrFinal2-align';
+target_folder = 'H:\datasets\discomfort-align';
 if exist(target_folder, 'dir')==0
     mkdir(target_folder);
 end;
@@ -19,7 +19,7 @@ imgSize = [112, 96];
 align_method = 'yandong';% wuxiang or yandong
             
 %caffe.set_mode_cpu();
-gpu_id=1;
+gpu_id=0;
 caffe.set_mode_gpu();	
 caffe.set_device(gpu_id);
 caffe.reset_all();
@@ -65,7 +65,7 @@ for image_id = 1:length(image_list);
         mkdir(file_folder);
     end;
     disp([num2str(image_id) '/' num2str(length(image_list)) ' ' target_filename]);
-    [boundingboxes points]=detect_face(img,min([minsize size(img,1) size(img,2)]),PNet,RNet,ONet,LNet,threshold,false,factor);
+    [boundingboxes points]=detect_face(img,min([minsize size(img,1)/2 size(img,2)/2]),PNet,RNet,ONet,LNet,threshold,false,factor);
     if isempty(boundingboxes)
         continue;
     end;
