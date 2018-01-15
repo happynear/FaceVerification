@@ -1,3 +1,4 @@
+% requirement: JSONLab: https://cn.mathworks.com/matlabcentral/fileexchange/33381-jsonlab--a-toolbox-to-encode-decode-json-files
 result_folder = 'E:\datasets\MegaFace\results\';
 feature_suffix = '_sphere';
 facescrub_cmc_file = ['cmc_facescrub_megaface' feature_suffix '_1000000_1.json'];
