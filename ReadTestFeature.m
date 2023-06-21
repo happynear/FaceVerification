@@ -57,7 +57,7 @@ for i = 1:all_class
     image_in_class{i} = find(C{2} == i -1);
     image_num_in_class(i) = length(image_in_class{i});
 end;
-for i=1:1000
+for i=1:10000
     try
         [pair1,pair2] = getTrainList(C,image_in_class,image_num_in_class);
         break;
